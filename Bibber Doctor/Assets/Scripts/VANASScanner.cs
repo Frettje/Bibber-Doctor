@@ -6,10 +6,12 @@ public class VANASScanner : MonoBehaviour {
 
     public GameObject VANASInterface;
     public Light scanFeedback;
+    public AudioSource beep;
+    public Color defaultColor;
 
     void OnCollisionEnter (Collision col)
     {
-        if (col.gameObject.name == "Badge")
+        if (col.gameObject.name == "Scanner")
         {
             StartCoroutine(OnScan());
             // Send ID OK
@@ -20,7 +22,8 @@ public class VANASScanner : MonoBehaviour {
     {
         // Play sound
         scanFeedback.color = Color.green;
+        beep.Play();
         yield return new WaitForSeconds(1);
-        scanFeedback.color = new Color (38, 225, 240);
+        scanFeedback.color = defaultColor;
     }
 }
