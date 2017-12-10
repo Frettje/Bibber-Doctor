@@ -25,16 +25,16 @@ public class VANASDrawers : MonoBehaviour {
         }
 	}
 
-    private void Update()
+    private void Update()       // For testing
     {
-        int drawerNmbr = 0;     // For testing
+        int drawerNmbr = 0;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ToggleLock(drawerNmbr, unlock);
             unlock = !unlock;
         }
-    }
+    }                           //
 
     public void ToggleLock(int drawerNmbr, bool unlock)
     {
@@ -56,5 +56,17 @@ public class VANASDrawers : MonoBehaviour {
         // Calculate opening by number of items in contents
 
         //drawers[drawerNmbr].GetComponent<ConfigurableJoint>().linearLimit.limit = openingMin;
+    }
+
+    public bool CheckForOpenDrawers()
+    {
+        foreach (GameObject drawer in drawers)
+        {
+            if (drawer.transform.GetChild(1).gameObject.activeSelf == true)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
