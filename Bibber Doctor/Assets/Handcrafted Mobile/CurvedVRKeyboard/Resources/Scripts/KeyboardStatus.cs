@@ -34,14 +34,16 @@ namespace CurvedVRKeyboard {
         /// <param name="clicked">keyboard item clicked</param>
         public void HandleClick ( KeyboardItem clicked ) {
             string value = clicked.GetValue();
-            if(value.Equals(QEH) || value.Equals(ABC)) { // special signs pressed
+            if (value.Equals(QEH) || value.Equals(ABC)) { // special signs pressed
                 ChangeSpecialLetters();
-            } else if(value.Equals(UP) || value.Equals(LOW)) { // upper/lower case pressed
+            } else if (value.Equals(UP) || value.Equals(LOW)) { // upper/lower case pressed
                 LowerUpperKeys();
-            } else if(value.Equals(SPACE)) {
+            } else if (value.Equals(SPACE)) {
                 TypeKey(BLANKSPACE);
-            } else if(value.Equals(BACK)) {
+            } else if (value.Equals(BACK)) {
                 BackspaceKey();
+            } else if (value.Equals(ENTER)) {
+                EnterKey();
             } else {// Normal letter
                 TypeKey(value[0]);
             }
@@ -76,6 +78,12 @@ namespace CurvedVRKeyboard {
                 textComponent.GetType().GetProperty(TEXT).SetValue(textComponent, output.Remove(output.Length - 1, 1), null);
                 output = output.Remove(output.Length - 1, 1);
             }
+        }
+
+        private void EnterKey ()
+        {
+            // Enter pressed
+            Debug.Log("Enter has been pressed");
         }
 
         private void TypeKey ( char key ) {
