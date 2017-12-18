@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BartScene.unity
     guid: d6a56db7fadc7441da22011aed094ca4
+  - enabled: 0
+    path: Assets/VRTK/Examples/002_Controller_Events.unity
+    guid: 6b736d8c81b40974bb88eb03aeeb507c
+  - enabled: 0
+    path: Assets/Scenes/TestScene.unity
+    guid: c33d5a8fce384054a89fea6a0210a229

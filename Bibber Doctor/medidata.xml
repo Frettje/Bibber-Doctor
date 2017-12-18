@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MedicalAppData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <mPatients>
+    <Patient mID="0">
+      <mName>John Doe</mName>
+      <mAge>45</mAge>
+      <mWeight>80</mWeight>
+      <mType>adult</mType>
+      <mSex>male</mSex>
+      <mAllergies />
+    </Patient>
+    <Patient mID="0">
+      <mName>John Doe</mName>
+      <mAge>45</mAge>
+      <mWeight>80</mWeight>
+      <mType>adult</mType>
+      <mSex>male</mSex>
+      <mAllergies />
+    </Patient>
+  </mPatients>
+  <mMedicines />
+  <mTools />
+  <mMethods />
+  <mCabinets />
+  <mScenarios />
+  <mMetaData>
+    <mVersion>0.1</mVersion>
+    <mDateTime>2017-12-13T11:50:27.22075+01:00</mDateTime>
+    <mGenerator>KdG XML Generator v0.1</mGenerator>
+  </mMetaData>
+</MedicalAppData>
