@@ -21,10 +21,12 @@ public class InterfaceManager : MonoBehaviour {
     public void Searchpatient()
     {
         string patientName = input.text;
+        int patientId;
+        int.TryParse(patientName, out patientId);
 
         for (int i = 0; i < patientList.Length; i++)
         {
-            if(patientList[i].patientName == patientName)// || patientList[i].ID == int.Parse(patientName)
+            if(patientList[i].patientName == patientName || patientList[i].ID == patientId)
             {
                 id.text = patientList[i].ID.ToString();
                 fullName.text = patientList[i].patientName;
@@ -48,6 +50,8 @@ public class InterfaceManager : MonoBehaviour {
 
 	public void Back()
 	{
+        input.text = null;
+
         patientID.alpha = 0;
         patientID.interactable = false;
         patientID.blocksRaycasts = false;
