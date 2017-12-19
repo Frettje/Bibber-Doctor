@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Genders {male, female};
 
-public class Patient : MonoBehaviour {
+public class PatientData : MonoBehaviour {
 
     public int ID;
     public string patientName;

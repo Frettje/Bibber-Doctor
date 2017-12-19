@@ -24,12 +24,6 @@ public class KeyboardController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void KeyPressed(int keyNbr)
     {
         if (keyNbr == 26)
