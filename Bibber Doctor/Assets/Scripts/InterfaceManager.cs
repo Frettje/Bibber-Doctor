@@ -6,54 +6,94 @@ using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour {
 
-    public GameObject keyboard;
-    public Canvas searchInterface;
-    public Canvas patientID;
-    public Patient[] patientList;
-    public Patient patientToTreat;
+    public CanvasGroup LockScreen;
+    public CanvasGroup searchInterface;
+    public CanvasGroup keyboard;
+    public CanvasGroup patientID;
+    public CanvasGroup patientNotFound;
+    public PatientData[] patientList;
+    public PatientData patientToTreat;
     public Text input;
     public Text id;
     public Text fullName;
     public Text prescription;
-    public string inputStr;
 
-	// Use this for initialization
-	void Start ()
+    public void Searchpatient()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        inputStr = input.text;
-	}
-
-    public void Searchpatient(string patientName)
-    {
-        patientName = inputStr;
+        string patientName = input.text;
 
         for (int i = 0; i < patientList.Length; i++)
         {
-            if(patientList[i].name == patientName || patientList[i].ID == int.Parse(patientName))
+            if(patientList[i].patientName == patientName)// || patientList[i].ID == int.Parse(patientName)
             {
                 id.text = patientList[i].ID.ToString();
-                fullName.text = patientList[i].name;
+                fullName.text = patientList[i].patientName;
                 prescription.text = patientList[i].prescription;
+
+                searchInterface.alpha = 0;
+                keyboard.alpha = 0;
+                keyboard.interactable = false;
+                keyboard.blocksRaycasts = false;
+
+                patientID.alpha = 1;
+                patientID.interactable = true;
+                patientID.blocksRaycasts = true;
+
+                return;
             }
         }
 
-        searchInterface.enabled = false;
-        keyboard.SetActive(false);
-        patientID.enabled = true;
-
+        ToggleNotFound();
     }
 
-	public void Back(string patienName)
+	public void Back()
 	{
-        patientID.enabled = false;
-        searchInterface.enabled = true;
-        keyboard.SetActive(true);
+        patientID.alpha = 0;
+        patientID.interactable = false;
+        patientID.blocksRaycasts = false;
+
+        searchInterface.alpha = 1;
+        keyboard.alpha = 1;
+        keyboard.interactable = true;
+        keyboard.blocksRaycasts = true;
 	}
 
+    public IEnumerator Unlock()
+    {
+        LockScreen.transform.GetChild(1).GetComponent<Text>().text = "Welcome";
+        yield return new WaitForSeconds(1);
+
+        LockScreen.alpha = 0;
+
+        searchInterface.alpha = 1;
+        keyboard.alpha = 1;
+        keyboard.interactable = true;
+        keyboard.blocksRaycasts = true;
+    }
+
+    public void ToggleNotFound()
+    {
+        if (patientNotFound.interactable == true)
+        {
+            patientNotFound.alpha = 0;
+            patientNotFound.interactable = false;
+            patientNotFound.blocksRaycasts = false;
+
+            searchInterface.alpha = 1;
+            keyboard.alpha = 1;
+            keyboard.interactable = true;
+            keyboard.blocksRaycasts = true;
+        }
+        else
+        {
+            searchInterface.alpha = 0;
+            keyboard.alpha = 0;
+            keyboard.interactable = false;
+            keyboard.blocksRaycasts = false;
+
+            patientNotFound.alpha = 1;
+            patientNotFound.interactable = true;
+            patientNotFound.blocksRaycasts = true;
+        }
+    }
 }

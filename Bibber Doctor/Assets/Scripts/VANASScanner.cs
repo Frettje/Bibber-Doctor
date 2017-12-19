@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VANASScanner : MonoBehaviour {
 
-    public GameObject VANASInterface;
+    public InterfaceManager VANASInterface;
     public Light scanFeedback;
     public AudioSource beep;
     public Color defaultColor;
@@ -14,13 +14,12 @@ public class VANASScanner : MonoBehaviour {
         if (col.gameObject.name == "Scanner")
         {
             StartCoroutine(OnScan());
-            // Send ID OK
+            StartCoroutine(VANASInterface.Unlock());
         }
     }
 
     IEnumerator OnScan ()
     {
-        // Play sound
         scanFeedback.color = Color.green;
         beep.Play();
         yield return new WaitForSeconds(1);
