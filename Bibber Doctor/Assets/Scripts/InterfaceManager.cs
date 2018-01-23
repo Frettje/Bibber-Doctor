@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class InterfaceManager : MonoBehaviour {
 
@@ -10,54 +11,40 @@ public class InterfaceManager : MonoBehaviour {
     public CanvasGroup searchInterface;
     public CanvasGroup keyboard;
     public CanvasGroup patientScreen;
+    public CanvasGroup orderedScreen;
     public CanvasGroup patientNotFound;
-
-    public LoadXML database;
-
-    public PatientData[] patientList;
-    public PatientData patientToTreat;
 
     public Text input;
     public Text id;
+    public Text age;
     public Text fullName;
     public Text allergies;
-    public Text age;
-    public Dropdown medicines;
+    public DropDownList medicines;
+    public GameObject openDrawerError;
 
-    void Start()
+    public Text orderedText;
+
+    public LoadXML database;
+    public VANASDrawers drawers;
+
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(1f);
         LoadMedicine();
     }
 
-    //public void Searchpatient()
-    //{
-    //    string patientName = input.text;
-    //    int patientId;
-    //    int.TryParse(patientName, out patientId);
+    public IEnumerator Unlock()
+    {
+        LockScreen.transform.GetChild(1).GetComponent<Text>().text = "Welcome";
+        yield return new WaitForSeconds(1);
 
-    //    for (int i = 0; i < patientList.Length; i++)
-    //    {
-    //        if(patientList[i].patientName == patientName || patientList[i].ID == patientId)
-    //        {
-    //            id.text = patientList[i].ID.ToString();
-    //            fullName.text = patientList[i].patientName;
-    //            allergies.text = patientList[i].prescription;
+        LockScreen.alpha = 0;
 
-    //            searchInterface.alpha = 0;
-    //            keyboard.alpha = 0;
-    //            keyboard.interactable = false;
-    //            keyboard.blocksRaycasts = false;
-
-    //            patientScreen.alpha = 1;
-    //            patientScreen.interactable = true;
-    //            patientScreen.blocksRaycasts = true;
-
-    //            return;
-    //        }
-    //    }
-
-    //    ToggleNotFound();
-    //}
+        searchInterface.alpha = 1;
+        keyboard.alpha = 1;
+        keyboard.interactable = true;
+        keyboard.blocksRaycasts = true;
+    }
 
     public void SearchPatient()
     {
@@ -104,15 +91,12 @@ public class InterfaceManager : MonoBehaviour {
 
     public void LoadMedicine()
     {
-        // load xml medication to dropdown
-
-        medicines.ClearOptions();
+        medicines.Items.Clear();
 
         for (int i = 0; database.medi != null && database.medi.mMedicines != null && i < database.medi.mMedicines.Count; i++)
         {
-            Dropdown.OptionData dDData = new Dropdown.OptionData();
-            dDData.text = database.medi.mMedicines[i].mName + "\t" + "(" + database.medi.mMedicines[i].mQuantity + ")";
-            medicines.options.Add(dDData);
+            DropDownListItem listItem = new DropDownListItem(database.medi.mMedicines[i].mName + "\t" + "(" + database.medi.mMedicines[i].mQuantity + ")", i.ToString());
+            medicines.Items.Add(listItem);
         }
     }
 
@@ -130,17 +114,67 @@ public class InterfaceManager : MonoBehaviour {
         keyboard.blocksRaycasts = true;
 	}
 
-    public IEnumerator Unlock()
+    public void Order()
     {
-        LockScreen.transform.GetChild(1).GetComponent<Text>().text = "Welcome";
-        yield return new WaitForSeconds(1);
+        if (drawers.CheckForOpenDrawers())
+        {
+            StartCoroutine(OpenDrawerError());
+        }
+        else
+        {
+            Medicine selectedMedicine = database.medi.mMedicines[int.Parse(medicines.SelectedItem.ID)];
+            bool locationFound = false;
+            int drawerId = 0;
 
-        LockScreen.alpha = 0;
+            for (int i = 0; database.medi != null && database.medi.mDrawers != null && !locationFound && i < database.medi.mDrawers.Count; i++)
+            {
+                for (int j = 0; database.medi.mDrawers[i].mMedicines != null && !locationFound && j < database.medi.mDrawers[i].mMedicines.Count; j++)
+                {
+                    if (database.medi.mDrawers[i].mMedicines[j] == selectedMedicine.mID)
+                    {
+                        drawerId = i;
+                        locationFound = true;
+                        Debug.Log("found");
+                    }
+                }
+            }
 
-        searchInterface.alpha = 1;
-        keyboard.alpha = 1;
-        keyboard.interactable = true;
-        keyboard.blocksRaycasts = true;
+            orderedText.text = selectedMedicine.mName + " ordered, opening drawer " + drawerId + "\nPlease stand clear.";
+
+            drawers.ToggleLock(drawerId, true);
+
+            patientScreen.alpha = 0;
+            patientScreen.interactable = false;
+            patientScreen.blocksRaycasts = false;
+
+            orderedScreen.alpha = 1;
+            orderedScreen.interactable = true;
+            orderedScreen.blocksRaycasts = true;
+
+            StartCoroutine(CloseOrderedScreen(drawerId));
+        }
+    }
+
+    public IEnumerator CloseOrderedScreen(int drawerId)
+    {
+        yield return new WaitForSeconds(5f);
+
+        drawers.CheckIfDrawerLockable(drawerId);
+
+        orderedScreen.alpha = 0;
+        orderedScreen.interactable = false;
+        orderedScreen.blocksRaycasts = false;
+
+        patientScreen.alpha = 1;
+        patientScreen.interactable = true;
+        patientScreen.blocksRaycasts = true;
+    }
+
+    public IEnumerator OpenDrawerError()
+    {
+        openDrawerError.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        openDrawerError.SetActive(false);
     }
 
     public void ToggleNotFound()

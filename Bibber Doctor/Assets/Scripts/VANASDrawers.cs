@@ -12,8 +12,6 @@ public class VANASDrawers : MonoBehaviour {
     public float openingMax = 0.26f;
     public float openingIncrement;
 
-    bool unlock = true;
-
     void Start () {
 		foreach (GameObject drawer in drawers)
         {
@@ -25,16 +23,16 @@ public class VANASDrawers : MonoBehaviour {
         }
 	}
 
-    private void Update()       // For testing
-    {
-        int drawerNmbr = 0;
+    //private void Update()       
+    //{
+    //    int drawerNmbr = 0;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ToggleLock(drawerNmbr, unlock);
-            unlock = !unlock;
-        }
-    }                           //
+    //    if (Input.GetKeyDown(KeyCode.Space))  // For testing
+    //    {
+    //        ToggleLock(drawerNmbr, unlock);
+    //        unlock = !unlock;
+    //    }
+    //}
 
     public void ToggleLock(int drawerNmbr, bool unlock)
     {
@@ -56,6 +54,18 @@ public class VANASDrawers : MonoBehaviour {
         // Calculate opening by number of items in contents
 
         //drawers[drawerNmbr].GetComponent<ConfigurableJoint>().linearLimit.limit = openingMin;
+    }
+
+    public void CheckIfDrawerLockable(int drawerId)
+    {
+        while (true)
+        {
+            if (drawers[drawerId].transform.position.z <= 1.038f)
+            {
+                ToggleLock(drawerId, false);
+                return;
+            }
+        }
     }
 
     public bool CheckForOpenDrawers()

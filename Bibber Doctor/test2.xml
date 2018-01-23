@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MedicalAppData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <mPatients>
+    <Patient mID="0">
+      <mName>Old McDonald</mName>
+      <mAge>80</mAge>
+      <mWeight>80</mWeight>
+      <mType>pregnant</mType>
+      <mSex>male</mSex>
+      <mAllergies />
+    </Patient>
+    <Patient mID="1">
+      <mName>James Hackett</mName>
+      <mAge>80</mAge>
+      <mWeight>80</mWeight>
+      <mType>child</mType>
+      <mSex>male</mSex>
+      <mAllergies />
+    </Patient>
+    <Patient mID="2">
+      <mName>Dan Daniels</mName>
+      <mAge>80</mAge>
+      <mWeight>80</mWeight>
+      <mType>adult</mType>
+      <mSex>male</mSex>
+      <mAllergies />
+    </Patient>
+  </mPatients>
+  <mMedicines>
+    <Medicine mID="0">
+      <mName>Paracetamol</mName>
+      <mQuantity>32</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>box</mPackage>
+      <mPointsOfAttention>Tablet 500mg#32 tablets/box</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="1">
+      <mName>Lorazepam</mName>
+      <mQuantity>30</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>box</mPackage>
+      <mPointsOfAttention>Carbon tablet 1mg#30 tablets/box</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="2">
+      <mName>Metoclopramide</mName>
+      <mQuantity>10</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention>2ml</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="3">
+      <mName>Piritramide</mName>
+      <mQuantity>5</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention>2ml#high risk</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="4">
+      <mName>Nadroparine</mName>
+      <mQuantity>10</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>box</mPackage>
+      <mPointsOfAttention>0.4ml</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="5">
+      <mName>Insuline</mName>
+      <mQuantity>10</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention />
+    </Medicine>
+    <Medicine mID="6">
+      <mName>Alizapride</mName>
+      <mQuantity>6</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention>2ml</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="7">
+      <mName>Amoxiciline</mName>
+      <mQuantity>10</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention>1g</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="8">
+      <mName>NaCl 20ml</mName>
+      <mQuantity>20</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention />
+    </Medicine>
+    <Medicine mID="9">
+      <mName>Ketorolac</mName>
+      <mQuantity>5</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>flask</mPackage>
+      <mPointsOfAttention>10mg</mPointsOfAttention>
+    </Medicine>
+    <Medicine mID="10">
+      <mName>NaCl 100ml</mName>
+      <mQuantity>5</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>baxter</mPackage>
+      <mPointsOfAttention />
+    </Medicine>
+    <Medicine mID="11">
+      <mName>Glucose</mName>
+      <mQuantity>2</mQuantity>
+      <mUnit>units</mUnit>
+      <mPackage>baxter</mPackage>
+      <mPointsOfAttention>1l</mPointsOfAttention>
+    </Medicine>
+  </mMedicines>
+  <mTools>
+    <DeliveryTool mID="0">
+      <mName>syringe 50cc</mName>
+    </DeliveryTool>
+    <DeliveryTool mID="1">
+      <mName>cup of water</mName>
+    </DeliveryTool>
+  </mTools>
+  <mMethods>
+    <DeliveryMethod mID="0">
+      <mName>use syringe</mName>
+      <mTools>
+        <int>0</int>
+        <int>1</int>
+        <int>2</int>
+      </mTools>
+    </DeliveryMethod>
+  </mMethods>
+  <mDrawers>
+    <CabinetDrawer mID="0">
+      <mMedicines>
+        <int>0</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="1">
+      <mMedicines>
+        <int>1</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="2">
+      <mMedicines>
+        <int>2</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="3">
+      <mMedicines>
+        <int>3</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="4">
+      <mMedicines>
+        <int>4</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="5">
+      <mMedicines>
+        <int>5</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="6">
+      <mMedicines>
+        <int>6</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="7">
+      <mMedicines>
+        <int>7</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="8">
+      <mMedicines>
+        <int>8</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="9">
+      <mMedicines>
+        <int>9</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="10">
+      <mMedicines>
+        <int>10</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+    <CabinetDrawer mID="11">
+      <mMedicines>
+        <int>11</int>
+      </mMedicines>
+      <mDeliveryTools>
+        <int>0</int>
+      </mDeliveryTools>
+      <mIsLocked>true</mIsLocked>
+    </CabinetDrawer>
+  </mDrawers>
+  <mCabinets>
+    <Cabinet mID="0">
+      <mDrawers>
+        <int>0</int>
+        <int>1</int>
+        <int>2</int>
+        <int>3</int>
+        <int>4</int>
+        <int>5</int>
+        <int>6</int>
+        <int>7</int>
+        <int>8</int>
+        <int>9</int>
+        <int>10</int>
+        <int>11</int>
+      </mDrawers>
+    </Cabinet>
+  </mCabinets>
+  <mScenarios>
+    <Scenario mID="0">
+      <mName>Testscenario</mName>
+      <mPatientID>0</mPatientID>
+      <mCabinetID>0</mCabinetID>
+      <mMedicineID>0</mMedicineID>
+      <mDeliveryMethod>0</mDeliveryMethod>
+    </Scenario>
+  </mScenarios>
+  <mMetaData>
+    <mVersion>0.1</mVersion>
+    <mDateTime>2017-12-13T21:16:31.347479+01:00</mDateTime>
+    <mGenerator>KdG XML Generator v0.1</mGenerator>
+  </mMetaData>
+</MedicalAppData>

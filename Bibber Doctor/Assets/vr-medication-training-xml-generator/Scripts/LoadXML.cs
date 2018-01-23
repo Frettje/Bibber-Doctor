@@ -29,7 +29,7 @@ public class LoadXML : MonoBehaviour
         bool succes = MedicalAppData.ReadFromFile(mFileName, out medi);
         if (succes)
         {
-            Debug.Log(mFileName + "was loaded");
+            Debug.Log(mFileName + " was loaded");
         }
         else
         {
@@ -43,7 +43,7 @@ public class LoadXML : MonoBehaviour
         bool succes = MedicalAppData.WriteToFile(ref medi, mFileName);
         if (succes)
         {
-            Debug.Log(mFileName + "was written");
+            Debug.Log(mFileName + " was written");
         }
         else
         {
